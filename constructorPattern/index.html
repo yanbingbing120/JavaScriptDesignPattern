@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>创建对象，设置属性</title>
+  </head>
+  <body>
+    <script type="text/javascript">
+      //你若盛开，蝴蝶自来   ...bane
+      //            2017.5.4 23:05
+      //创建对象的两种方式
+      //1.
+      var newObject={};
+      //2.
+      //var newObject=new Object();
+
+      //有四种方式可以将键值赋值给一个对象
+      //1.点语法
+      //设置属性
+      newObject.someKey='hello world';
+      //获取属性
+      var key = newObject.someKey;
+
+      //2.中括号语法
+      //set
+      newObject["someKey"]="hello world1";
+      //get
+      key = newObject["someKey"];
+
+      //3. object.defineProperty
+      Object.defineProperty(newObject, "someKey", {
+          value: "for more control of the property`s behavior",
+          writable:true,
+          enumerable:true,
+          configurable:true
+      });
+      //或
+      var defineProp= function(obj,key,value){
+        var config={
+          value: value,
+           writable: true,
+           enumerable: true,
+           configurable: true
+        };
+        config.value=value;
+        Object.defineProperty(obj,key,config);
+      }
+      //eg:
+      var person={};
+      defineProp(person,"cart","delorean");
+      console.log(person);
+
+      //4.Object.defineProperties:
+      //set
+      Object.defineProperties(newObject,{
+        "someKey":{
+          value: "hello world2",
+          writable: true
+        },
+        "anotherKey":{
+          value: "Foo bar",
+          writable: true
+        }
+      });
+
+
+    </script>
+  </body>
+</html>
